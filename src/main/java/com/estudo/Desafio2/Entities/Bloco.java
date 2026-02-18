@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.Instant;
 
 @Entity
-@Table(name = "tb_participante")
+@Table(name = "tb_bloco")
 public class Bloco {
 
     @Id
@@ -14,14 +14,18 @@ public class Bloco {
     private Instant inicio;
     private Instant fim;
 
+    @OneToOne
+    private Atividade atividade;
+
     public Bloco(){
 
     }
 
-    public Bloco(Integer id, Instant inicio, Instant fim) {
+    public Bloco(Integer id, Instant inicio, Instant fim, Atividade atividade) {
         this.id = id;
         this.inicio = inicio;
         this.fim = fim;
+        this.atividade = atividade;
     }
 
     public Integer getId() {
@@ -46,5 +50,13 @@ public class Bloco {
 
     public void setFim(Instant fim) {
         this.fim = fim;
+    }
+
+    public Atividade getAtividade() {
+        return atividade;
+    }
+
+    public void setAtividade(Atividade atividade) {
+        this.atividade = atividade;
     }
 }
